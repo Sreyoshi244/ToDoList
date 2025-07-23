@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">📝 Your Todo List</h2>
+
+  <!-- Todo Form -->
+  <form method="POST" class="card p-4 shadow-sm mb-5">
+    <h5 class="mb-3">Add a New Task</h5>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Enter task title" required>
+    </div>
+    <div class="mb-3">
+      <label for="desc" class="form-label">Description</label>
+      <input type="text" class="form-control" id="desc" name="desc" placeholder="Enter task description" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">➕ Add Todo</button>
+  </form>
+
+  <!-- Todo List -->
+  {% if allTodo %}
+    <div class="row">
+      {% for todo in allTodo %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ todo.title }}</h5>
+            <p class="card-text text-muted">{{ todo.desc }}</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <a href="/update/{{ todo.id }}" class="btn btn-sm btn-outline-secondary">
+              ✏️ Edit
+            </a>
+            <a href="/delete/{{ todo.id }}" class="btn btn-sm btn-outline-danger">
+              🗑️ Delete
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-center mt-5">
+      <h4 class="text-muted">No todos yet... 💤</h4>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
