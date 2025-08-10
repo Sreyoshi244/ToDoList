@@ -1,7 +1,6 @@
 
 
-## README.md Template for Your To-Do List App
-
+## ToDoList
 ````markdown
 # ToDoList
 
